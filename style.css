@@ -1,0 +1,204 @@
+/* Globale Stile und Mobile-First-Ansatz */
+:root {
+    --primary-color: #007bff;
+    --success-color: #28a745;
+    --danger-color: #dc3545;
+    --light-color: #f8f9fa;
+    --dark-color: #343a40;
+    --background-color: #ffffff;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    height: 100%;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--background-color);
+    color: var(--dark-color);
+}
+
+#app-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    padding: 15px;
+    text-align: center;
+}
+
+.screen {
+    width: 100%;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.hidden {
+    display: none;
+}
+
+h1 {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+}
+
+h2 {
+    font-size: 2rem;
+}
+
+.instructions {
+    line-height: 1.6;
+    color: #555;
+}
+
+button {
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: white;
+    background-color: var(--primary-color);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Testbildschirm */
+#test-screen {
+    width: 100%;
+    height: 100%;
+    justify-content: space-between;
+}
+
+#test-screen header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.2rem;
+    color: #666;
+}
+
+.timer {
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--dark-color);
+}
+
+.key {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    width: 100%;
+    max-width: 300px;
+    background-color: var(--light-color);
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+}
+
+.key-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 1.5rem;
+}
+
+.key-item .symbol {
+    font-size: 2rem;
+}
+
+#task-container {
+    width: 100%;
+}
+
+.symbol-display {
+    font-size: 8rem;
+    font-weight: bold;
+    min-height: 120px; /* Platzhalter, um Layoutsprünge zu vermeiden */
+    margin-bottom: 20px;
+}
+
+#digit-input {
+    width: 80px;
+    height: 80px;
+    font-size: 3rem;
+    text-align: center;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    /* Versteckt die Pfeile bei number-Inputs */
+    -moz-appearance: textfield;
+}
+#digit-input::-webkit-outer-spin-button,
+#digit-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+#digit-input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+
+/* Pausenbildschirm */
+.distraction-label {
+    margin-top: 20px;
+    color: #666;
+}
+.distraction {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: var(--primary-color);
+    min-height: 50px;
+}
+
+
+/* Ergebnisbildschirm */
+.result-box {
+    width: 100%;
+    background-color: var(--light-color);
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.result-box h3 {
+    margin-bottom: 10px;
+}
+
+.result-box p {
+    font-size: 1.8rem;
+    font-weight: bold;
+}
+
+.result-box small {
+    font-size: 1rem;
+    color: #555;
+    margin-top: 5px;
+    display: block;
+}
+
+.learning-rate {
+    background-color: #e8f5e9; /* Leicht grünlich */
+}
+
+
+/* Media Query für größere Bildschirme (Tablets/Desktops) */
+@media (min-width: 768px) {
+    h1 {
+        font-size: 3rem;
+    }
+    .symbol-display {
+        font-size: 10rem;
+    }
+}

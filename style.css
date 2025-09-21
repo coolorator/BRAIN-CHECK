@@ -1,10 +1,10 @@
 /* Globale Stile und Mobile-First-Ansatz */
 :root {
-    --primary-color: #007bff;
+    --primary-color: #4a90e2;
     --success-color: #28a745;
     --danger-color: #dc3545;
     --light-color: #f8f9fa;
-    --dark-color: #343a40;
+    --dark-color: #333;
     --background-color: #ffffff;
 }
 
@@ -17,7 +17,6 @@
 html, body {
     height: 100%;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-    background-color: var(--background-color);
     color: var(--dark-color);
 }
 
@@ -32,29 +31,19 @@ html, body {
 
 .screen {
     width: 100%;
-    max-width: 500px;
+    max-width: 900px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 20px;
+    gap: 15px;
 }
 
 .hidden {
     display: none;
 }
 
-h1 {
-    font-size: 2.5rem;
-    color: var(--primary-color);
-}
-
 h2 {
     font-size: 2rem;
-}
-
-.instructions {
-    line-height: 1.6;
-    color: #555;
 }
 
 button {
@@ -66,20 +55,53 @@ button {
     border: none;
     border-radius: 8px;
     cursor: pointer;
-    transition: background-color 0.2s ease;
+    transition: background-color 0.2s ease, transform 0.1s ease;
 }
-
 button:hover {
-    background-color: #0056b3;
+    background-color: #357abd;
+}
+button:active {
+    transform: scale(0.98);
 }
 
-/* Testbildschirm */
-#test-screen {
+/* 1. Startbildschirm (Neues Design) */
+#start-screen {
+    background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+    color: white;
+    padding: 30px;
+    border-radius: 15px;
+    justify-content: center;
     width: 100%;
-    height: 100%;
-    justify-content: space-between;
+    max-width: 500px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+#start-screen h1 {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    font-size: 3rem;
+    font-weight: bold;
+    text-shadow: 0 0 10px rgba(255,255,255,0.3);
+    color: #fff;
+    margin-bottom: 20px;
+}
+#start-screen .instructions {
+    line-height: 1.6;
+    color: #ccc;
+    margin-bottom: 30px;
 }
 
+/* 2. Testbildschirm */
+#test-screen {
+    height: 100%;
+    width: 100%;
+    justify-content: flex-start; /* Korrigiert das Tastatur-Problem */
+    gap: 20px;
+}
+.test-panel-key {
+    width: 100%;
+}
+.test-panel-task {
+    width: 100%;
+}
 #test-screen header {
     width: 100%;
     display: flex;
@@ -87,83 +109,90 @@ button:hover {
     align-items: center;
     font-size: 1.2rem;
     color: #666;
+    margin-bottom: 15px;
 }
-
 .timer {
     font-size: 2rem;
     font-weight: bold;
-    color: var(--dark-color);
 }
-
 .key {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 10px;
     width: 100%;
-    max-width: 300px;
+    max-width: 320px;
+    margin: 0 auto;
     background-color: var(--light-color);
     padding: 15px;
     border-radius: 8px;
     border: 1px solid #ddd;
 }
-
 .key-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    font-size: 1.5rem;
-}
-
-.key-item .symbol {
-    font-size: 2rem;
-}
-
-#task-container {
-    width: 100%;
-}
-
-.symbol-display {
-    font-size: 8rem;
+    font-size: 1.8rem;
     font-weight: bold;
-    min-height: 120px; /* Platzhalter, um Layoutsprünge zu vermeiden */
-    margin-bottom: 20px;
 }
-
+.key-item .symbol {
+    font-size: 2.5rem;
+}
+.symbol-display {
+    font-size: clamp(6rem, 25vw, 8rem); /* Responsive Schriftgröße */
+    font-weight: bold;
+    min-height: 100px;
+    margin-bottom: 15px;
+}
 #digit-input {
-    width: 80px;
-    height: 80px;
-    font-size: 3rem;
+    width: 100px;
+    height: 100px;
+    font-size: 3.5rem;
     text-align: center;
     border: 2px solid #ccc;
     border-radius: 8px;
-    /* Versteckt die Pfeile bei number-Inputs */
-    -moz-appearance: textfield;
-}
-#digit-input::-webkit-outer-spin-button,
-#digit-input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
 }
 #digit-input:focus {
     outline: none;
     border-color: var(--primary-color);
 }
 
-
-/* Pausenbildschirm */
-.distraction-label {
-    margin-top: 20px;
-    color: #666;
+/* 3. Pausenbildschirm (Interaktiv) */
+.distraction-wrapper {
+    background-color: var(--light-color);
+    padding: 20px;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 350px;
 }
 .distraction {
     font-size: 2.5rem;
     font-weight: bold;
-    color: var(--primary-color);
-    min-height: 50px;
+    margin-bottom: 15px;
+}
+.distraction-input-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+#distraction-input {
+    width: 120px;
+    height: 60px;
+    font-size: 2rem;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+#distraction-feedback {
+    font-size: 2.5rem;
+    width: 40px; /* Feste Breite für Feedback-Icons */
+}
+.distraction-prompt {
+    margin-top: 10px;
+    color: var(--danger-color);
+    font-weight: bold;
+    font-size: 1.5rem;
+    min-height: 25px;
 }
 
-
-/* Ergebnisbildschirm */
+/* 4. Ergebnisbildschirm */
 .result-box {
     width: 100%;
     background-color: var(--light-color);
@@ -171,34 +200,42 @@ button:hover {
     border-radius: 8px;
     margin-bottom: 10px;
 }
-
-.result-box h3 {
-    margin-bottom: 10px;
-}
-
 .result-box p {
     font-size: 1.8rem;
     font-weight: bold;
 }
-
-.result-box small {
-    font-size: 1rem;
-    color: #555;
-    margin-top: 5px;
-    display: block;
-}
-
 .learning-rate {
-    background-color: #e8f5e9; /* Leicht grünlich */
+    background-color: #e8f5e9;
 }
 
-
-/* Media Query für größere Bildschirme (Tablets/Desktops) */
+/* Desktop-Layout (ab 768px Breite) */
 @media (min-width: 768px) {
-    h1 {
-        font-size: 3rem;
+    #test-screen {
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        gap: 5%;
+        padding: 20px;
+    }
+    .test-panel-key, .test-panel-task {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+    }
+    .key {
+        max-width: 400px;
+        gap: 15px;
+    }
+    .key-item {
+        font-size: 2.5rem; /* Größere Schrift für bessere Lesbarkeit */
+    }
+    .key-item .symbol {
+        font-size: 3.5rem; /* Größere Schrift für bessere Lesbarkeit */
     }
     .symbol-display {
-        font-size: 10rem;
+        font-size: clamp(10rem, 20vh, 14rem);
     }
 }

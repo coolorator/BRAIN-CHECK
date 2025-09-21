@@ -11,38 +11,48 @@
     <main id="app-container">
 
         <section id="start-screen" class="screen">
-            <h1>Gehirn-Challenge</h1>
-            <p class="instructions">
-                Willkommen beim Symbol-Digit-Test! Ihnen wird eine Zuordnung von Symbolen zu Ziffern (1-9) angezeigt.
-                <br><br>
-                Danach erscheint in der Mitte ein einzelnes Symbol. Ihre Aufgabe ist es, so schnell wie möglich die passende Ziffer einzugeben.
-                <br><br>
-                <b>Punktesystem:</b> Punkte = Richtige Antworten - Falsche Antworten.
-                <br><br>
-                Es gibt zwei Runden à 90 Sekunden.
-            </p>
-            <button id="start-challenge-btn">Challenge starten</button>
+            <div class="start-content">
+                <h1>Gehirn-Challenge</h1>
+                <p class="instructions">
+                    Willkommen beim Symbol-Digit-Test! Ihnen wird eine Zuordnung von Symbolen zu Ziffern (1-9) angezeigt.
+                    <br><br>
+                    Danach erscheint in der Mitte ein einzelnes Symbol. Ihre Aufgabe ist es, so schnell wie möglich die passende Ziffer einzugeben.
+                    <br><br>
+                    <b>Punktesystem:</b> Punkte = Richtige Antworten - Falsche Antworten.
+                    <br><br>
+                    Es gibt zwei Runden à 90 Sekunden.
+                </p>
+                <button id="start-challenge-btn">Challenge starten</button>
+            </div>
         </section>
 
         <section id="test-screen" class="screen hidden">
-            <header>
-                <div id="timer" class="timer">01:30</div>
-                <div id="progress">Symbol 1 / 500</div>
-            </header>
-            <div id="key-container" class="key">
-                </div>
-            <div id="task-container">
+            <div class="test-panel-key">
+                <header>
+                    <div id="timer" class="timer">01:30</div>
+                    <div id="progress">Symbol 1 / 500</div>
+                </header>
+                <div id="key-container" class="key">
+                    </div>
+            </div>
+            <div class="test-panel-task">
                 <div id="current-symbol" class="symbol-display">?</div>
-                <input type="tel" id="digit-input" inputmode="numeric" pattern="[1-9]" maxlength="1" autofocus>
+                <input type="tel" id="digit-input" inputmode="numeric" pattern="[1-9]*" autocomplete="off" autofocus>
             </div>
         </section>
 
         <section id="pause-screen" class="screen hidden">
             <h2>Pause</h2>
-            <p>Die nächste Runde beginnt in:</p>
+            <p>Löse die Aufgaben, um fortzufahren. Die Runde 2 startet in:</p>
             <div id="pause-timer" class="timer">01:00</div>
-            <p class="distraction-label">Zur Ablenkung:</p>
-            <div id="distraction-task" class="distraction"></div>
+            <div class="distraction-wrapper">
+                <div id="distraction-task" class="distraction"></div>
+                <div class="distraction-input-wrapper">
+                    <input type="tel" id="distraction-input" inputmode="numeric" autocomplete="off">
+                    <span id="distraction-feedback"></span>
+                </div>
+                <div id="distraction-prompt" class="distraction-prompt"></div>
+            </div>
         </section>
 
         <section id="results-screen" class="screen hidden">

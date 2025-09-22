@@ -83,10 +83,20 @@ document.addEventListener('DOMContentLoaded', () => {
             state.symbolKey[symbol] = digits[index];
         });
 
+        // --- GEÄNDERT: Logik zur Erstellung der Testsequenz ---
         state.testSequence = [];
+        let lastSymbol = null; // Speichert das letzte Symbol, um Wiederholungen zu vermeiden
+
         for (let i = 0; i < SEQUENCE_LENGTH; i++) {
-            const randomIndex = Math.floor(Math.random() * state.sessionSymbols.length);
-            state.testSequence.push(state.sessionSymbols[randomIndex]);
+            let nextSymbol;
+            // NEU: Schleife, die so lange ein neues Symbol wählt, bis es sich vom letzten unterscheidet
+            do {
+                const randomIndex = Math.floor(Math.random() * state.sessionSymbols.length);
+                nextSymbol = state.sessionSymbols[randomIndex];
+            } while (nextSymbol === lastSymbol);
+            
+            state.testSequence.push(nextSymbol);
+            lastSymbol = nextSymbol; // Das neue Symbol für den nächsten Durchlauf als "letztes" merken
         }
     }
 
